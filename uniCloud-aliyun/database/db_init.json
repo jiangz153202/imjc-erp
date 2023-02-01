@@ -1,0 +1,31 @@
+// 在本文件中可配置云数据库初始化，数据格式见：https://uniapp.dcloud.io/uniCloud/hellodb?id=db-init
+// 编写完毕后对本文件点右键，可按配置规则创建表和添加数据
+{
+	"user":{
+		"data":[
+			{
+				"name":"张三",
+				"age":"18",
+				"openId":"",
+				"password":"123456",
+				"rules":[0,1,2]
+			}
+		]
+	},
+	"rules":{
+		"data":[
+			{
+				"name":"admin",
+				"ruleId":0
+			},
+			{
+				"name":"store",
+				"ruleId":1
+			},
+			{
+				"name":"user",
+				"ruleId":2
+			}
+		]
+	}
+}
