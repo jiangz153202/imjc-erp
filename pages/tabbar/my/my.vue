@@ -1,6 +1,6 @@
 <template>
 	<view>
-		my
+		个人中心
 	</view>
 </template>
 

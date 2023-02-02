@@ -11,7 +11,9 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationStyle":"custom"
+				
             }
             
         }
@@ -20,7 +22,8 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationStyle":"custom"
             }
             
         }
@@ -30,6 +33,34 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+		
+	},
+	"tabBar": {
+		"color": "#666",
+		"selectedColor": "#e6ac01",
+		"borderStyle": "white",
+		"backgroundColor":"white",
+		"list": [
+			{
+				"iconPath": "static/icons/beibao_gray.png",
+				"selectedIconPath": "static/icons/beibao.png",
+				"pagePath": "pages/tabbar/index/index",
+				"text": "首页"
+			},
+			{
+				"iconPath": "static/icons/tuku_gray.png",
+				"selectedIconPath": "static/icons/tuku.png",
+				"pagePath": "pages/tabbar/store/store",
+				"text": "门店数据"
+			},
+			{
+				"iconPath": "static/icons/zhizhen_gray.png",
+				"selectedIconPath": "static/icons/zhizhen.png",
+				"pagePath": "pages/tabbar/my/my",
+				"text": "个人中心"
+			}
+		]
+		
 	},
 	"uniIdRouter": {}
 }
