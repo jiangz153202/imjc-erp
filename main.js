@@ -2,7 +2,10 @@ import App from './App'
 
 // #ifndef VUE3
 import Vue from 'vue'
+import { httpFunc,cloudFunc } from './request/index.js'
 Vue.config.productionTip = false
+Vue.prototype.$http = httpFunc;
+Vue.prototype.$cloudHttp = cloudFunc;
 App.mpType = 'app'
 const app = new Vue({
     ...App

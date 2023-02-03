@@ -1,11 +1,12 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
+		<navbar></navbar>
+		<tabbar></tabbar>
+		
 		<view class="my-footer">
-			<button @click="getUserList">获取数据</button>
+			<button @click="getUserList" type="default">获取数据</button>
+			
+			<button @click="getUniCloud" type="primary">云函数获取数据</button>
 		</view>
 		<view>
 			<span v-for="(item,index) in lists">
@@ -17,28 +18,46 @@
 </template>
 
 <script>
+	
 	export default {
+		
 		data() {
 			return {
 				title: 'Hello',
 				lists:[]
 			}
 		},
+		
 		onLoad() {
 
 		},
 		methods: {
 			getUserList(){
 				let self = this;
-				uniCloud.callFunction({
-					name:"get_user_list",
-					success: (res) => {
-						console.log('成功',res);
-						self.lists = res.result.data;
-					},
-					fail: (err) => {
-						console.log('失败',err);
-					}
+				// uniCloud.callFunction({
+				// 	name:"get_user_list",
+				// 	success: (res) => {
+				// 		console.log('成功',res);
+				// 		self.lists = res.result.data;
+				// 	},
+				// 	fail: (err) => {
+				// 		console.log('失败',err);
+				// 	}
+				// })
+				
+				this.$http({
+					url:"http://wm.dddingjiu.com/api/index"
+				}).then((res) => {
+					console.log('res',res);
+				})
+			},
+			getUniCloud(){
+				let self = this;
+				this.$cloudHttp({
+					name:"get_store_list",
+					data:{}
+				}).then((res) => {
+					console.log('getUniCloud',res);
 				})
 			}
 		}
