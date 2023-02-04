@@ -1,18 +1,19 @@
 <template>
 	<view class="content">
 		<navbar></navbar>
-		<tabbar></tabbar>
+		<tabbar :isClass="tabbarStatus" :isRows="rows" :list="lists"></tabbar>
 		
-		<view class="my-footer">
+		<!-- <view class="my-footer">
 			<button @click="getUserList" type="default">获取数据</button>
 			
 			<button @click="getUniCloud" type="primary">云函数获取数据</button>
-		</view>
+			<button @click="onTabbarChange">更改tabbar</button>
+		</view> -->
 		<view>
-			<span v-for="(item,index) in lists">
-				{{ item.name }}
+			<view v-for="(item,index) in 10">
+				
 				{{item}}
-			</span>
+			</view>
 		</view>
 	</view>
 </template>
@@ -24,7 +25,9 @@
 		data() {
 			return {
 				title: 'Hello',
-				lists:[]
+				lists:[],
+				tabbarStatus:false,
+				rows:5
 			}
 		},
 		
@@ -58,7 +61,13 @@
 					data:{}
 				}).then((res) => {
 					console.log('getUniCloud',res);
+					let tabs = new Array(10).fill('汪家窖');
+					
+					this.lists = tabs.concat(res.data)
 				})
+			},
+			onTabbarChange(){
+				this.tabbarStatus = !this.tabbarStatus;
 			}
 		}
 	}

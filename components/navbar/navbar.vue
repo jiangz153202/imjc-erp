@@ -27,13 +27,13 @@
 			    let systemInfo = uni.getSystemInfoSync()
 				this.statusbarheight = systemInfo.statusBarHeight;
 				this.windowWidth = systemInfo.windowWidth;
-				console.log('systemInfo',systemInfo);
+				//console.log('systemInfo',systemInfo);
 			// #ifndef H5 || APP-PLUS || MP-ALIPAY
 				let mp_wx = uni.getMenuButtonBoundingClientRect();
 				this.bar_height = (mp_wx.bottom - this.statusbarheight) + (mp_wx.top - this.statusbarheight);
 				this.box_height = mp_wx.height;
 				this.windowWidth = mp_wx.left;
-				console.log('mp_wx',mp_wx);
+				//console.log('mp_wx',mp_wx);
 			// #endif
 		}
 	}

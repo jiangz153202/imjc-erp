@@ -6,7 +6,7 @@ export const cloudFunc = (options) => {
 			data:data,
 			success: (res) => {
 				if(res.result.code == 200){
-					resolve(res.result.data);
+					resolve(res.result);
 				}
 			},
 			fail: (err) => {
