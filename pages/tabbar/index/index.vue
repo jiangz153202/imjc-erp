@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view class="home">
 		<navbar></navbar>
 		<tabbar :isClass="tabbarStatus" :isRows="rows" :list="lists"></tabbar>
 		
@@ -9,11 +9,14 @@
 			<button @click="getUniCloud" type="primary">云函数获取数据</button>
 			<button @click="onTabbarChange">更改tabbar</button>
 		</view> -->
-		<view>
-			<view v-for="(item,index) in 10">
-				
-				{{item}}
-			</view>
+		<view class="scroll">
+			<scroll-view scroll-y="true" class="scroll-view">
+				<view>
+					<view v-for="(item,index) in 100" class="">
+						{{item}}
+					</view>
+				</view>
+			</scroll-view>
 		</view>
 	</view>
 </template>
@@ -32,7 +35,7 @@
 		},
 		
 		onLoad() {
-
+			this.getUniCloud();
 		},
 		methods: {
 			getUserList(){
@@ -73,30 +76,27 @@
 	}
 </script>
 
-<style>
-	.content {
+<style lang="scss">
+	
+	page{
+		height: 100%;
+		display: flex;
+	}
+	.home{
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+		flex: 1;
+		border: 1px solid rebeccapurple;
 	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+	
+	.scroll{
+		flex: 1;
+		flex-direction: column;
+		overflow: hidden;
+		.scroll-view{
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
 	}
 </style>
