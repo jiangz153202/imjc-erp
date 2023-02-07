@@ -1,20 +1,9 @@
 <template>
-	<view class="content">
-		<view class="uni-title uni-common-pl">地区选择器</view>
-		<view class="uni-list">
-			<view class="uni-list-cell">
-				<view class="uni-list-cell-left">
-					当前门店
-				</view>
-				<view class="uni-list-cell-db">
-					<picker @change="bindPickerChange" :value="index" :range="array">
-						<view class="uni-input">{{ array[index]}}</view>
-					</picker>
-				</view>
-			</view>
-		</view>
-		
-		
+	<view>
+		<u-popup v-model="show" mode="top" length="60%">
+			<view>出淤泥而不染，濯清涟而不妖</view>
+		</u-popup>
+		<button type="default" @click="bindClickChange">按钮</button>
 	</view>
 </template>
 
@@ -23,7 +12,7 @@
 		data() {
 			return {
 				title:"门店管理入口页",
-				array:[],
+				show: false,
 				index:0
 			};
 		},
@@ -38,7 +27,7 @@
 					name:"get_store_list",
 					success:(res) => {
 						console.log(res);
-						self.array = res.result.data;
+						//self.list = res.result.data;
 					},
 					fail: (err) => {
 						console.log('失败',err);
@@ -48,6 +37,10 @@
 			bindPickerChange: function(e) {
 				console.log('picker发送选择改变，携带值为', e.detail.value)
 				this.index = e.detail.value
+			},
+			bindClickChange:function(){
+				console.log('bindClickChange',this.show);
+				this.show = !this.show;
 			}
 		}
 	}

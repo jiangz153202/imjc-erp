@@ -7,6 +7,8 @@
 			<button @click="getUserList" type="default">获取数据</button>
 			
 			<button @click="getUniCloud" type="primary">云函数获取数据</button>
+			
+			<u-button @click="getUniCloud" text="按钮" type="primary"></u-button>
 		</view>
 		<view>
 			<span v-for="(item,index) in lists">
