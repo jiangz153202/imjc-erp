@@ -1,18 +1,15 @@
 <template>
 	<view class="content">
 		<navbar></navbar>
-		<tabbar></tabbar>
+		<tabbar :list="lists" :is-show="status" :current="currentId" @onTabbarChange="onTabbarChange" @onChangeIsShow="onChangeIsShow"></tabbar>
 		
 		<view class="my-footer">
 			<button @click="getUserList" type="default">获取数据</button>
-			
 			<u-button @click="getUniCloud" text="云函数获取数据" type="primary"></u-button>
-			<u-icon name="photo"></u-icon>
 		</view>
 		<view>
 			<span v-for="(item,index) in lists">
 				{{ item.name }}
-				{{item}}
 			</span>
 		</view>
 	</view>
@@ -25,12 +22,14 @@
 		data() {
 			return {
 				title: 'Hello',
-				lists:[]
+				lists:[],
+				currentId:0,
+				status:false
 			}
 		},
 		
 		onLoad() {
-
+			this.getUserList();
 		},
 		methods: {
 			getUserList(){
@@ -56,6 +55,37 @@
 					})
 					console.log('newArr',newArr);
 					self.lists = newArr;
+				}).catch((err)=>{
+					console.error('http err');
+					self.lists = [
+						{
+							name:'内容1'
+						},
+						{
+							name:'内容2'
+						},
+						{
+							name:'内容3'
+						},
+						{
+							name:'内容4'
+						},
+						{
+							name:'内容5'
+						},
+						{
+							name:'内容6'
+						},
+						{
+							name:'内容7'
+						},
+						{
+							name:'内容8'
+						},
+						{
+							name:'内容9'
+						}
+					]
 				})
 			},
 			getUniCloud(){
@@ -66,6 +96,15 @@
 				}).then((res) => {
 					console.log('getUniCloud',res);
 				})
+			},
+			onTabbarChange(event){
+				console.log('传递上来的值',event.index);
+				this.currentId = event.index;
+				
+			},
+			onChangeIsShow(event){
+				console.log('传递上来的值',event);
+				this.status = event.status;
 			}
 		}
 	}
@@ -75,8 +114,6 @@
 	.content {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 	}
 
 	.logo {
