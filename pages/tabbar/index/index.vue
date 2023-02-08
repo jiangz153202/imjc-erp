@@ -6,9 +6,8 @@
 		<view class="my-footer">
 			<button @click="getUserList" type="default">获取数据</button>
 			
-			<button @click="getUniCloud" type="primary">云函数获取数据</button>
-			
-			<u-button @click="getUniCloud" text="按钮" type="primary"></u-button>
+			<u-button @click="getUniCloud" text="云函数获取数据" type="primary"></u-button>
+			<u-icon name="photo"></u-icon>
 		</view>
 		<view>
 			<span v-for="(item,index) in lists">
@@ -50,7 +49,13 @@
 				this.$http({
 					url:"http://wm.dddingjiu.com/api/index"
 				}).then((res) => {
-					console.log('res',res);
+					
+					let categories = res.data.categories;
+					var newArr = categories.map( (item, index) => {
+						return item.category
+					})
+					console.log('newArr',newArr);
+					self.lists = newArr;
 				})
 			},
 			getUniCloud(){
