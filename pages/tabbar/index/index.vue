@@ -1,17 +1,26 @@
 <template>
-	<view class="content">
+	<view class="home">
 		<navbar></navbar>
 		<tabbar :list="lists" :is-show="status" :current="currentId" @onTabbarChange="onTabbarChange" @onChangeIsShow="onChangeIsShow"></tabbar>
+		<list-scroll>
+			<view class="list-buttons">
+				<button @click="getUserList" type="default">获取数据</button>
+				<!-- <u-button type="primary"  @click="getUniCloud" size="mini" text="确定"></u-button> -->
+			</view>
+			<view class="list-card">
+				<view v-for="(item,index) in 100" class="card">
+					<view class="list-card_image">
+						<image src="../../../static/logo.png" class="img" mode="aspectFill"></image>
+					</view>
+					<view class="list-card_content">
+						<view class="card-content_name">
+							{{ item }}的东西一二三四
+						</view>
+					</view>
+				</view>
+			</view>
+		</list-scroll>
 		
-		<view class="my-footer">
-			<button @click="getUserList" type="default">获取数据</button>
-			<u-button @click="getUniCloud" text="云函数获取数据" type="primary"></u-button>
-		</view>
-		<view>
-			<span v-for="(item,index) in lists">
-				{{ item.name }}
-			</span>
-		</view>
 	</view>
 </template>
 
@@ -110,28 +119,51 @@
 	}
 </script>
 
-<style>
-	.content {
+<style lang="scss">
+	page{
+		height: 100%;
+		display: flex;
+	}
+	.home {
 		display: flex;
 		flex-direction: column;
+		flex: 1;
+		//border: 1px solid red;
+		width: 100%;
 	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
+	.list-buttons{
 		display: flex;
-		justify-content: center;
+		flex-direction: column;
+		box-sizing: border-box;
+	}
+	.list-card{
+		display: flex;
+		flex-direction: column;
+		.card{
+			display: flex;
+			padding: 10px;
+			border-radius: 10px;
+			box-sizing: border-box;
+			.list-card_image{
+				width: 80px;
+				height: 80px;
+				overflow: hidden;
+				.img{
+					width: 100%;
+					display: block;
+				}
+			}
+			.list-card_content{
+				flex: 1;
+				box-sizing: border-box;
+				border:1px solid red;
+				.card-content_name{
+					font-size: 14px;
+					color:#333;
+				}
+				
+			}
+		}
 	}
 
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
 </style>
