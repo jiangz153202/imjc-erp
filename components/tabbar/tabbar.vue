@@ -1,13 +1,20 @@
 <template>
-	<view class="page">
-		<scroll-view scroll-x="true" class="scroll-view">
-			<view class="tabbar" :class="{ active : isClass}" v:if="{ list.length > 0 }">
-				<view class="tabbar-item" :style="{ '--rows': isRows}" v-for="(item,index) in list" :key="index">
-					{{item}}
+
+	<view class="tab">
+		<view class="tab-content">
+			<scroll-view scroll-x scroll-with-animation="true">
+				<view class="tab-scroll_box" :class="{'grid':isShow }" :style="{ '--rows':rows}">
+					<view class="tabbar-item" :class="{ 'active' : current == index   }" @click="changeTabbar(index)" v-for="(item,index) in list" :key="index">
+						{{item.name}}
+					</view>
 				</view>
-			</view>
-		</scroll-view>
-		<!-- <uni-icons type="gear" size="24"></uni-icons> -->
+			</scroll-view>
+		</view>
+		<view class="tab-icons" >
+			<uni-icons type="gear" size="26" color="#666" @click="changeIsShow"></uni-icons>
+			
+		</view>
+
 	</view>
 </template>
 
@@ -15,20 +22,29 @@
 	export default {
 		name:"tabbar",
 		props:{
-			"isRows":{
-				type:Number,
-				default:4
-			},
-			"isClass":{
-				type:Boolean,
-				default(){
-					return true
-				}
-			},
 			list:{
 				type:Array,
 				default(){
-					return [];
+					return []
+				}
+			},
+			current:{
+				type:Number,
+				default(){
+					return 0
+				}
+			},
+			rows:{
+				type:Number,
+				default(){
+					return 4
+				}
+			},
+			isShow:{
+				type:Boolean,
+				default(){
+					return false
+
 				}
 			}
 		},
@@ -36,41 +52,74 @@
 			return {
 				
 			};
+		},
+		methods:{
+			changeTabbar(index){
+				console.log('onTabbarChange',index);
+				this.$emit('onTabbarChange',{
+					index:index
+				});
+			},
+			changeIsShow(){
+				console.log('changeIsShow',!this.isShow);
+				this.$emit('onChangeIsShow',{
+					status:!this.isShow
+				});
+				
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	.page{
-		background-color: lightyellow;
+
+	
+	.tab{
+		display: flex;
 		width: 100%;
-		.scroll-view{
-			
-		}
-		.tabbar{
-			display: flex;
-			justify-content: flex-start;
-			.tabbar-item{
-				color: #999;
-				font-size: 12px;
-				flex-shrink: 0;
+		border-bottom: 1px solid #ebebeb;
+		box-sizing: border-box;
+		background: #fff;
+		.tab-content{
+			flex: 1;
+			overflow: hidden;
+			box-sizing: border-box;
+			.tab-scroll_box{
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				width: 100%;
+				padding: 10px 0;
 				box-sizing: border-box;
-				padding: $uni-spacing-row-base $uni-spacing-row-lg;
-				&.actice{
-					color: rebeccapurple;
+				.tabbar-item{
+					flex-shrink: 0;
+					box-sizing: border-box;
+					color: #333;
+					font-size: 14px;
+					transition: all 0.3s; 
+					padding: 0 15px;
+				}
+				.tabbar-item.active{
+					color:$imjc-color-red;
+				}
+			}
+			.tab-scroll_box.grid{
+				flex-wrap: wrap;
+				.tabbar-item{
+					text-align: center;
+					width: calc(100% / var(--rows));
+					padding: 10px 0 0 0;
 				}
 			}
 		}
-		.tabbar.active{
-			flex-wrap: wrap;
-			.tabbar-item{
-				width: calc(100% / var(--rows));
-				text-align: center;
-			}
+		.tab-icons{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-width: 45px;
+			max-height: 40px;
 		}
-		
 	}
-	
-	
-	
+
+
 </style>
