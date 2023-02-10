@@ -1,9 +1,11 @@
 <template>
-	<view>
-		<u-popup v-model="show" mode="top" length="60%">
-			<view>出淤泥而不染，濯清涟而不妖</view>
-		</u-popup>
-		<button type="default" @click="bindClickChange">按钮</button>
+	<view class="home">
+		<navbar mode="navite"></navbar>
+		<navigation-bar :title="title" />
+		<view class="">
+			我的门店列表
+		</view>
+		
 	</view>
 </template>
 
@@ -18,7 +20,7 @@
 		},
 		onLoad() {
 			console.log('page onLoad');
-			this.getStoreList();
+			//this.getStoreList();
 		},
 		methods:{
 			getStoreList(){

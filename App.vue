@@ -6,7 +6,7 @@
 		onShow: function() {
 			console.log('App Show')
 			// 通过`console.log`打印的形式
-			console.log(uni.$u.config.v);
+			//console.log(uni.$u.config.v);
 		},
 		onHide: function() {
 			console.log('App Hide')

@@ -1,13 +1,30 @@
 <template>
 	<view class="navbar-wrap">
-		<view class="navbar" >
+		<view class="navbar" :class="mode" v-if="mode === 'search'">
 			<view class="statsbarView" :style="{ height : statusbarheight + 'px' }"></view>
-			<view class="navbar-serch" :style="{ height : bar_height +'px', 'width' : windowWidth + 'px'}">
+			<view class="navbar-search" :style="{ height : bar_height +'px', 'width' : windowWidth + 'px'}">
 				<view class="navbar-box" :style="{ '--height': box_height + 'px'}">
 					<view class="navbar-box_icon"></view>
 					<view class="navbar-box_text">帝皇宴，汪家窖</view>
 				</view>
 			</view>
+		</view>
+		<view class="navbar" :class="mode" v-if="mode === 'navite'">
+			<view class="statsbarView" :style="{ height : statusbarheight + 'px' }"></view>
+			<view class="navbar-search" :style="{ height : bar_height +'px', 'width' : windowWidth + 'px'}">
+				<view class="navbar-box" :style="{ '--height': box_height + 'px'}">
+					<view class="native-back">
+						<uni-icons type="arrow-left"></uni-icons>
+					</view>
+					<view class="native-title">
+						我的标题
+					</view>
+					<view class="native-menus">
+						<uni-icons type="menus"></uni-icons>
+					</view>
+				</view>
+			</view>
+			
 		</view>
 		<view :style="{ height:(bar_height + statusbarheight)+'px' }"></view>
 	</view>
@@ -15,6 +32,12 @@
 
 <script>
 	export default {
+		props:{
+			mode:{
+				type:String,
+				default:"search"
+			}
+		},
 		data(){
 			return{
 				bar_height:45,
@@ -46,8 +69,10 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		background-color: $imjc-color-red;
-		.navbar-serch{
+		&.search{
+			background-color: $imjc-color-red;
+		}
+		.navbar-search{
 			display: flex;
 			justify-content: center;
 			align-items: center;

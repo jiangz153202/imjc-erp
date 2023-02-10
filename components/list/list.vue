@@ -8,7 +8,7 @@
 
 <script>
 	export default {
-		name:"list-scroll",
+		name:"list",
 		data() {
 			return {
 				
@@ -19,9 +19,7 @@
 
 <style lang="scss">
 	.scroll{
-		display: flex;
-		overflow: hidden;
-		flex: 1;
+		height: 100%;
 		.list-scroll{
 			height: 100%;
 			display: flex;
