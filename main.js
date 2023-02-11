@@ -1,5 +1,6 @@
 import App from './App'
 import Vue from 'vue'
+import store from './store'
 
 import { httpFunc,cloudFunc } from './request/index.js'
 // main.js，注意要在use方法之后执行
@@ -11,6 +12,7 @@ Vue.prototype.$http = httpFunc;
 Vue.prototype.$cloudHttp = cloudFunc;
 App.mpType = 'app'
 const app = new Vue({
+	store,
     ...App
 })
 app.$mount()

@@ -1,6 +1,6 @@
 <template>
 	<view class="home">
-		<navbar mode="navite"></navbar>
+		<navbar mode="native"></navbar>
 		<navigation-bar :title="title" />
 		<view class="">
 			我的门店列表
